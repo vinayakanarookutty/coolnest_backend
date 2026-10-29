@@ -1,4 +1,4 @@
-const path = require('path');
+﻿const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +14,7 @@ const transferRoutes = require('./routes/transferRoutes');
 const auditRoutes = require('./routes/auditRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const materialRoutes = require('./routes/materialRoutes');
+const scoreRoutes = require('./routes/scoreRoutes');
 
 // Initialize background jobs
 require('./cron/payrollCron');
@@ -25,6 +26,7 @@ connectDB();
 
 // Middleware
 const allowedOrigins = [
+  'http://localhost:3000',
   'http://localhost:5173',
   'http://localhost:5174',
   'http://localhost:5175',
@@ -53,6 +55,7 @@ app.use('/api/transfers', transferRoutes);
 app.use('/api/audit-logs', auditRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/materials', materialRoutes);
+app.use('/api/scores', scoreRoutes);
 
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
