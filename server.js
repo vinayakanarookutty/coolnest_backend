@@ -1,4 +1,4 @@
-﻿const path = require('path');
+const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
@@ -15,6 +15,7 @@ const auditRoutes = require('./routes/auditRoutes');
 const analyticsRoutes = require('./routes/analyticsRoutes');
 const materialRoutes = require('./routes/materialRoutes');
 const scoreRoutes = require('./routes/scoreRoutes');
+const proposalRoutes = require('./routes/proposalRoutes');
 
 // Initialize background jobs
 require('./cron/payrollCron');
@@ -56,6 +57,7 @@ app.use('/api/audit-logs', auditRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/materials', materialRoutes);
 app.use('/api/scores', scoreRoutes);
+app.use('/api/proposals', proposalRoutes);
 
 // Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
